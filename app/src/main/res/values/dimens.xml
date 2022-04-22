@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="t10">10sp</dimen>
+    <dimen name="t12">12sp</dimen>
+    <dimen name="t20">20sp</dimen>
+    <dimen name="space5">5sp</dimen>
+    <dimen name="space10">10sp</dimen>
+    <dimen name="space20">20sp</dimen>
+    <dimen name="height400">400sp</dimen>
+    <dimen name="design_tab_text_size_2line" tools:override="true">10sp</dimen>
+</resources>

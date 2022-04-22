@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="adapter"
+            type="com.jamessc94.weather.ui.adapter.AdapLocation" />
+
+        <variable
+            name="list"
+            type="java.util.List&lt;String&gt;"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/frag_location_tl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/CustomTabText"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:adapter="@{adapter}"
+            app:tab="@{fragLocationTl}"
+            app:list="@{list}"
+            app:layout_constraintTop_toBottomOf="@+id/frag_location_tl"
+            app:layout_constraintBottom_toTopOf="@id/frag_location_cancel"/>
+
+        <Button
+            android:id="@+id/frag_location_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/close"
+            android:layout_margin="@dimen/space10"
+            style="@style/CustomButton"
+            app:icon="@drawable/close_white"
+            app:backgroundTint="@android:color/holo_red_light"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="data"
+            type="com.jamessc94.weather.model.WLocationAdap" />
+
+        <variable
+            name="buttontext"
+            type="String" />
+
+        <variable
+            name="buttontextcolor"
+            type="Integer" />
+
+        <variable
+            name="click"
+            type="com.jamessc94.weather.ui.adapter.AdapLocationDetailsClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{data.name}"
+            android:padding="@dimen/space10"
+            android:layout_marginEnd="@dimen/space10"
+            style="@style/CustomTextview"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cell_location_details_btn"/>
+
+        <Button
+            android:id="@+id/cell_location_details_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{buttontext}"
+            android:textColor="@{buttontextcolor}"
+            android:onClick="@{() -> click.onClick(data)}"
+            android:background="@android:color/transparent"
+            style="@style/CustomButtonBorderless"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

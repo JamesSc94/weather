@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.jamessc94.weather.ui.home.HomeVM" />
+
+        <variable
+            name="adapter"
+            type="com.jamessc94.weather.ui.adapter.AdapHome" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:toast="@{vm.toastMessage}"
+        app:rain="@{vm.weathersByDate}">
+
+        <ImageButton
+            android:id="@+id/frag_home_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space10"
+            android:contentDescription="@string/remove"
+            android:onClick="@{() -> vm.updateSavedLocation()}"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/delete_white"
+            app:tint="@color/custom_primary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/frag_home_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.liveName}"
+            android:textSize="@dimen/t20"
+            android:layout_margin="@dimen/space5"
+            style="@style/CustomTextview"
+            app:layout_constraintWidth_percent=".8"
+            app:layout_constraintTop_toTopOf="@+id/frag_home_delete"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/frag_home_delete"/>
+
+        <TextView
+            android:id="@+id/frag_home_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.liveDate}"
+            android:textSize="@dimen/t20"
+            android:textStyle="bold"
+            style="@style/CustomTextview"
+            app:layout_constraintBottom_toTopOf="@+id/frag_home_days"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/frag_home_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.liveDayOfWeek}"
+            android:textSize="@dimen/t10"
+            android:layout_marginBottom="@dimen/space10"
+            style="@style/CustomTextview"
+            app:layout_constraintBottom_toTopOf="@+id/frag_home_adap"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space10"
+            android:contentDescription="@string/previous_day"
+            android:onClick="@{() -> vm.updateDate(-1)}"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/arrow_left"
+            app:tint="@color/custom_primary"
+            app:layout_constraintTop_toTopOf="@+id/frag_home_date"
+            app:layout_constraintBottom_toBottomOf="@+id/frag_home_days"
+            app:layout_constraintEnd_toStartOf="@+id/frag_home_date" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space10"
+            android:contentDescription="@string/previous_day"
+            android:onClick="@{() -> vm.updateDate(1)}"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/arrow_right"
+            app:tint="@color/custom_primary"
+            app:layout_constraintTop_toTopOf="@+id/frag_home_date"
+            app:layout_constraintBottom_toBottomOf="@+id/frag_home_days"
+            app:layout_constraintStart_toEndOf="@+id/frag_home_date" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/frag_home_adap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space10"
+            android:layout_margin="@dimen/space20"
+            android:alpha=".8"
+            android:background="@color/black_blur"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:adapter="@{adapter}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+<!--        app:submitWeatherDisplayList="@{vm.weathersByDate}"-->
+<!--        app:layout_constraintHeight_max="@dimen/height400"-->
+<!--        app:layout_constraintHeight_min="0dp"-->
+<!--        app:layout_constrainedHeight="true"-->
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/CustomProgressBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:visibilityPb="@{vm.isLoading}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
